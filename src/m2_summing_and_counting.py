@@ -278,7 +278,7 @@ def count_sines_vs_cosines(m):
       -- Also:  count_sines_vs_cosines(101) returns 100 (trust me!)
     """
     # ------------------------------------------------------------------
-    # TODO: 7. Implement and test this function.
+    # DONE: 7. Implement and test this function.
     #   Note that you should write its TEST function first (above).
     #
     # IMPORTANT: As in previous problems in this session,
@@ -286,8 +286,8 @@ def count_sines_vs_cosines(m):
     #   of the RANGE expression, if you happen to know them.
     # ------------------------------------------------------------------
     count = 0
-    for k in range((2*m)):
-        if math.sin(-m+k) > math.cos(m+k):
+    for k in range((2*m)+1):
+        if math.sin(-m+k) > math.cos(-m+k):
             count = count + 1
     return count
 
