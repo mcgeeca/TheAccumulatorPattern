@@ -244,8 +244,15 @@ def draw_circles_from_rectangle(m, n, rectangle, window):
     # ------------------------------------------------------------------
     rectangle.attach_to(window)
     window.render()
+    height_of_rectangle = rectangle.get_height()
+    diameter = height_of_rectangle
+    radius = diameter / 2
+    center_of_rectangle = rectangle.get_center()
+    center = center_of_rectangle
     for _ in range(n):
         circle = rg.Circle(center, radius)
+        circle.attach_to(window)
+        window.render()
 
 
 def run_test_draw_lines_from_rectangles():
