@@ -142,7 +142,7 @@ def run_test_draw_circles_from_rectangle():
     print('--------------------------------------------------')
 
     # ------------------------------------------------------------------
-    # TODO: 3. Implement this TEST function.
+    # DONE: 3. Implement this TEST function.
     #   It TESTS the  draw_circles_from_rectangle  function
     #   defined below.  Include at least **   3   ** tests, of which
     #      ***  at least TWO tests are on ONE window and
@@ -229,7 +229,7 @@ def draw_circles_from_rectangle(m, n, rectangle, window):
       :type window: rg.RoseWindow
     """
     # ------------------------------------------------------------------
-    # TODO: 4. Implement and test this function.
+    # DONE: 4. Implement and test this function.
     #          Tests have been written for you (above).
     #
     # CONSIDER using the ACCUMULATOR IN GRAPHICS pattern,
@@ -245,14 +245,37 @@ def draw_circles_from_rectangle(m, n, rectangle, window):
     rectangle.attach_to(window)
     window.render()
     height_of_rectangle = rectangle.get_height()
-    diameter = height_of_rectangle
-    radius = diameter / 2
+    width_of_rectangle = rectangle.get_width()
+    diameter_of_circles_moving_left = height_of_rectangle
+    diameter_of_circles_moving_up = width_of_rectangle
+    radius_of_circles_moving_left = diameter_of_circles_moving_left / 2
+    radius_of_circles_moving_up = diameter_of_circles_moving_up/2
     left_edge_of_rectangle = rectangle.get_upper_left_corner()
     left_side_of_rectangle = left_edge_of_rectangle.x
+    top_side_of_rectangle = left_edge_of_rectangle.y
     center_of_rectangle = rectangle.get_center()
     center = center_of_rectangle
+    x_coordinate_of_circles_moving_left = left_side_of_rectangle - \
+                              radius_of_circles_moving_left
+    x_coordinate_of_circles_moving_up = center_of_rectangle.x
+    y_coordinate_of_circles_moving_left = center_of_rectangle.y
+    y_coordinate_of_circles_moving_up = top_side_of_rectangle - \
+                                        radius_of_circles_moving_up
+    for _ in range(m):
+        center = rg.Point(x_coordinate_of_circles_moving_left,
+                          y_coordinate_of_circles_moving_left)
+        circle = rg.Circle(center, radius_of_circles_moving_left)
+        circle.fill_color = rectangle.fill_color
+        x_coordinate_of_circles_moving_left = x_coordinate_of_circles_moving_left - \
+                                  diameter_of_circles_moving_left
+        circle.attach_to(window)
+        window.render()
     for _ in range(n):
-        circle = rg.Circle(center, radius)
+        center = rg.Point(x_coordinate_of_circles_moving_up, y_coordinate_of_circles_moving_up)
+        circle = rg.Circle(center, radius_of_circles_moving_up)
+        circle.outline_color = rectangle.outline_color
+        y_coordinate_of_circles_moving_up = \
+            y_coordinate_of_circles_moving_up - diameter_of_circles_moving_up
         circle.attach_to(window)
         window.render()
 
