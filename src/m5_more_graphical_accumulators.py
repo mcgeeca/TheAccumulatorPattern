@@ -247,6 +247,8 @@ def draw_circles_from_rectangle(m, n, rectangle, window):
     height_of_rectangle = rectangle.get_height()
     diameter = height_of_rectangle
     radius = diameter / 2
+    left_edge_of_rectangle = rectangle.get_upper_left_corner()
+    left_side_of_rectangle = left_edge_of_rectangle.x
     center_of_rectangle = rectangle.get_center()
     center = center_of_rectangle
     for _ in range(n):
