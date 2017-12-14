@@ -357,7 +357,7 @@ def draw_lines_from_rectangles(rectangle1, rectangle2, n, window):
       :type window: rg.RoseWindow
       """
     # ------------------------------------------------------------------
-    # TODO: 5. Implement and test this function.
+    # DONE: 5. Implement and test this function.
     #          Tests have been written for you (above).
     #
     # CONSIDER using the ACCUMULATOR IN GRAPHICS pattern,
@@ -370,7 +370,33 @@ def draw_lines_from_rectangles(rectangle1, rectangle2, n, window):
     #          ** FIRST DO A CONCRETE EXAMPLE BY HAND! **
     ####################################################################
     # ------------------------------------------------------------------
+    rectangle1.attach_to(window)
+    rectangle2.attach_to(window)
+    window.render()
 
+    rectangle1_color = rectangle1.outline_color
+    rectangle2_color = rectangle2.outline_color
+    thickness = 5
+    rectangle1_width = rectangle1.get_width()
+    height = rectangle1.get_height()
+    rectangle1_center = rectangle1.get_center()
+    rectangle2_center = rectangle2.get_center()
+
+    for k in range(n):
+        change_in_x = k * (rectangle1_width / 2)
+        change_in_y = k * (height / 2)
+        start = rg.Point(rectangle1_center.x - change_in_x,
+                         rectangle1_center.y + change_in_y)
+        end = rg.Point(rectangle2_center.x - change_in_x, rectangle2_center.y + change_in_y)
+        line = rg.Line(start, end)
+        line.thickness = thickness
+        if k % 2 == 0:
+            line.color = rectangle1_color
+        else:
+            line.color = rectangle2_color
+
+        line.attach_to(window)
+        window.render()
 
 # ----------------------------------------------------------------------
 # Calls  main  to start the ball rolling.
